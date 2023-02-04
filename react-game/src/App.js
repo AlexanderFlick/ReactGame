@@ -12,12 +12,19 @@ function App() {
     setMoney(money);
   };
 
+  const removeMoneyHandler = priceOfResource => {
+    if(money >= priceOfResource){
+      money -= priceOfResource;
+      setMoney(money);
+    }
+  }
+
   return (
     <div className="App">
       <Header money={money} />
       <div className="row">
         <DrugsModule money={money} OnDrugSale={addMoneyHandler} />
-        <ResourcesModule money={money} />
+        <ResourcesModule money={money} OnResourcePurchase={removeMoneyHandler} />
       </div>
     </div>
   );

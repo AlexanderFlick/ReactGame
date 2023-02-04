@@ -5,7 +5,11 @@ const ResourcesModule = (props) => {
     { name: "car", cost: 1000 },
     { name: "shady warehouse", cost: 10000 },
   ];
-  
+
+  const removeMoneyHandler = resourceCost => {
+    props.OnResourcePurchase(resourceCost);
+  }
+
   return (
     <div>
       <h2>Resources</h2>
