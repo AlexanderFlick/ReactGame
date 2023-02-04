@@ -1,4 +1,4 @@
-const ResourceItem = (props) => {
+const ResourceItem = props => {
   return (
     <div>
       <p>{props.name}</p>
