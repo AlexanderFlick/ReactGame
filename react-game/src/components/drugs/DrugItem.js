@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const DrugItem = (props) => {
+const DrugItem = props => {
   var [drugTotal, setDrugTotal] = useState(props.total);
   var [priceOfDrug, setPriceOfDrug] = useState(props.price);
 
