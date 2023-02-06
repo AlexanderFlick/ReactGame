@@ -3,16 +3,16 @@ import DrugItem from "../components/drugs/DrugItem";
 import Card from "@mui/material/Card";
 
 const Drugs = (props) => {
-  var [drugMoney, setDrugMoney] = useState(props.money);
+  var [amountPerClick, setAmountPerClick] = useState(1);
 
   var weedTypes = [
-    { name: "dirt weed", total: 0, price: 10 },
-    { name: "watermelon sour", total: 0, price: 100 },
-    { name: "blue dream", total: 0, price: 1000 },
+    { name: "dirt weed" },
+    { name: "watermelon sour"},
+    { name: "blue dream" },
   ];
 
-  const addMoneyHandler = (drugPrice) => {
-    props.OnDrugSale(drugPrice);
+  const addWeedHandler = () => {
+    props.OnGetWeed(amountPerClick);
   };
 
   return (
@@ -21,9 +21,8 @@ const Drugs = (props) => {
         <Card variant="outlined">
           <DrugItem
             name={weed.name}
-            total={weed.total}
-            price={weed.price}
-            OnDrugSale={addMoneyHandler}
+            amountPerClick={amountPerClick}
+            OnGetWeed={addWeedHandler}
           />
         </Card>
       ))}

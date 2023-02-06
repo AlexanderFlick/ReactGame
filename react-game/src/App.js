@@ -1,18 +1,18 @@
 import { useState } from "react";
-import Header from "./components/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Drugs from "./pages/Drugs";
-import Resources from "./pages/Resources";
+import  Header  from "./components/header/Header";
+import  Drugs  from "./pages/Drugs";
+import  Resources  from "./pages/Resources";
 import "./App.css";
-import { ReactDOM } from "react";
 
 function App() {
   var [money, setMoney] = useState(0);
+  var [weedTotal, setWeedTotal] = useState(0);
 
-  const addMoneyHandler = (moneyToAdd) => {
-    money += moneyToAdd;
-    setMoney(money);
-  };
+  const getMoreWeed = (amountPerClick) => {
+    weedTotal += amountPerClick;
+    setWeedTotal(weedTotal);
+  }
 
   const removeMoneyHandler = (priceOfResource) => {
     if (money >= priceOfResource) {
@@ -24,10 +24,28 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header money={money} />
+        <Header money={money} weedTotal={weedTotal}/>
         <Routes>
-          <Route exact path="/resources" element={<Resources money={money} OnResourcePurchase={removeMoneyHandler} />} />
-          <Route exact path="/drugs" element={<Drugs OnDrugSale={addMoneyHandler}/>} />
+          <Route
+            exact
+            path="/resources"
+            element={
+              <Resources
+                money={money}
+                OnResourcePurchase={removeMoneyHandler}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/gather"
+            element={
+            <Drugs OnGetWeed={getMoreWeed} />}
+          />
+          <Route exact
+            path="/resources"
+            element="/grow"></Route>
+          <Route></Route>
         </Routes>
       </BrowserRouter>
     </div>
