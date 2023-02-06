@@ -1,6 +1,7 @@
 import { useState } from "react";
+import Button from "@mui/material/Button";
 
-const DrugItem = props => {
+const DrugItem = (props) => {
   var [drugTotal, setDrugTotal] = useState(props.total);
   var [priceOfDrug, setPriceOfDrug] = useState(props.price);
 
@@ -24,10 +25,12 @@ const DrugItem = props => {
       <p>
         Price per {props.name} Sold: ${props.price}
       </p>
-      <button className="drugButton" onClick={GetDrug}>Get {props.name}</button>
-      <button className="drugButton" onClick={SellDrug}>
-        Sell {props.name} for ${props.price}
-      </button>
+      <Button variant="contained" onClick={GetDrug}>
+        Get {props.name}
+      </Button>
+      <Button variant="contained" onClick={SellDrug}>
+        Sell {props.name}
+      </Button>
     </div>
   );
 };

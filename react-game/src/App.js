@@ -1,8 +1,10 @@
-import "./App.css";
 import { useState } from "react";
-import Header from "./components/header/Header";
-import DrugsModule from "./components/drugs/DrugsModule";
-import ResourcesModule from "./components/resources/ResourcesModule";
+import Header from "./components/Header";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Drugs from "./pages/Drugs";
+import Resources from "./pages/Resources";
+import "./App.css";
+import { ReactDOM } from "react";
 
 function App() {
   var [money, setMoney] = useState(0);
@@ -12,20 +14,22 @@ function App() {
     setMoney(money);
   };
 
-  const removeMoneyHandler = priceOfResource => {
-    if(money >= priceOfResource){
+  const removeMoneyHandler = (priceOfResource) => {
+    if (money >= priceOfResource) {
       money -= priceOfResource;
       setMoney(money);
     }
-  }
+  };
 
   return (
     <div className="App">
-      <Header money={money} />
-      <div className="row">
-        <DrugsModule money={money} OnDrugSale={addMoneyHandler} />
-        <ResourcesModule money={money} OnResourcePurchase={removeMoneyHandler} />
-      </div>
+      <BrowserRouter>
+        <Header money={money} />
+        <Routes>
+          <Route exact path="/resources" element={<Resources money={money} OnResourcePurchase={removeMoneyHandler} />} />
+          <Route exact path="/drugs" element={<Drugs OnDrugSale={addMoneyHandler}/>} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

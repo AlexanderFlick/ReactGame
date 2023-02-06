@@ -1,7 +1,8 @@
 import { useState } from "react";
-import DrugItem from "./DrugItem";
+import DrugItem from "../components/drugs/DrugItem";
+import Card from "@mui/material/Card";
 
-const DrugsModule = (props) => {
+const Drugs = (props) => {
   var [drugMoney, setDrugMoney] = useState(props.money);
 
   var weedTypes = [
@@ -16,20 +17,18 @@ const DrugsModule = (props) => {
 
   return (
     <div>
-      <h2>Weed Strains</h2>
-
       {weedTypes.map((weed) => (
-        <div className="card">
+        <Card variant="outlined">
           <DrugItem
             name={weed.name}
             total={weed.total}
             price={weed.price}
             OnDrugSale={addMoneyHandler}
           />
-        </div>
+        </Card>
       ))}
     </div>
   );
 };
 
-export default DrugsModule;
+export default Drugs;
